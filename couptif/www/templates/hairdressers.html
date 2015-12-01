@@ -1,8 +1,14 @@
 <ion-view view-title="Hairdressers">
   <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="hairdresser in hairdressers"
-                href="#/app/hairdressers/{{hairdresser.id}}">{{hairdresser.first_name}} {{hairdresser.last_name}}</ion-item>
-    </ion-list>
+    <div class="list">
+
+      <a class="item item-avatar" href="#/app/hairdressers/{{hairdresser.id}}" ng-repeat="hairdresser in hairdressers">
+        <img src="{{hairdresser.photo}}">
+        <h2>{{hairdresser.first_name}} {{hairdresser.last_name}}</h2>
+        <p>{{hairdresser.description}}</p>
+      </a>
+
+    </div>
+
   </ion-content>
 </ion-view>
