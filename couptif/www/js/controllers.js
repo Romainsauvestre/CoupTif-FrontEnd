@@ -46,7 +46,8 @@ angular.module('starter.controllers', ['starter.services'])
   }
 )
 
-.controller('HairdresserCtrl', function($scope, $stateParams, Hairdresser) {
+.controller('HairdresserCtrl', function($scope, $stateParams, Hairdresser, Service) {
     $scope.hairdresser = Hairdresser.get({hairdresserId: $stateParams.hairdresserId});
+    $scope.services = Service.query({hairdresserId: $stateParams.hairdresserId});
 });
 
