@@ -50,7 +50,7 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.services = Service.query({hairdresserId: $stateParams.hairdresserId});
 })
 
-.controller('ServiceCtrl', function($scope, $stateParams, Service, Calendar){
+.controller('ServiceCtrl', function($scope, $stateParams, $state, Service, Calendar){
   $scope.service = Service.get({hairdresserId: $stateParams.hairdresserId, serviceId: $stateParams.serviceId});
 
   // Get list of calendars
@@ -69,6 +69,9 @@ angular.module('starter.controllers', ['starter.services'])
       format: "YYYY-MM-DD",           // date format
       onClick: function(date){        // click on day returns date
         console.log(date); //TODO: make a link
+        console.log(calendars);
+        var calendarId = 1; //TODO modify
+        $state.go("app.calendar", {"hairdresserId":$stateParams.hairdresserId, "calendarId":calendarId});
       },
       availabilities: days_availability
     });
