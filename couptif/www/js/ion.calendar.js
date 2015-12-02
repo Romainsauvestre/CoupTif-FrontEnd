@@ -28,7 +28,8 @@
                     startDate: "",
                     hideArrows: false,
                     onClick: null,
-                    onReady: null
+                    onReady: null,
+                    availabilities: null  // Added a way to render days available or not
                 }, options),
                 html, i;
 
@@ -85,7 +86,19 @@
                 };
 
                 var prepareData = function(){
-                    // start date
+                    // Handle the availabilities object
+                    if(settings.availabilities) {
+                        // The array is supposed to be of the format: {"2015-12-16":true, "2015-12-17":false}
+                        // True means NOT AVAILABLE
+                        // TODO: do something here?
+                    }
+                    else{
+                        // Example settings.availabilities
+                        settings.availabilities = JSON.parse('{"2015-12-02":true, "2015-12-03":true}');
+                    }
+
+
+                  // start date
                     if(settings.startDate) {
                         if(settings.format.indexOf("L") >= 0) {
                             timeSelected = moment(settings.startDate, "YYYY.MM.DD").locale(settings.lang);
@@ -218,11 +231,24 @@
                         for(i = 1; i <= monthLastDay; i++) {
                             // current day
                             if(moment(timeNowLocal).date(i).format("D.M.YYYY") === timeNow.format("D.M.YYYY")) {
-                                html += '<td class="ic__day ic__day_state_current">' + i + '</td>';
+                                if (settings.availabilities && settings.availabilities[moment(timeNowLocal).date(i).format("YYYY-MM-DD")]) {
+                                    html += '<td = class="ic__day-unavailable">' + i + '</td>';
+                                }
+                                else{
+                                    html += '<td class="ic__day ic__day_state_current">' + i + '</td>';
+                                }
+
                             } else if(timeSelected && moment(timeNowLocal).date(i).format("D.M.YYYY") === timeSelected.format("D.M.YYYY")) {
                                 html += '<td class="ic__day ic__day_state_selected">' + i + '</td>';
                             } else {
-                                html += '<td class="ic__day">' + i + '</td>';
+                                // TODO: add a way to make unavailable days with the class ic_day-unavailable
+                                if (settings.availabilities &&
+                                  settings.availabilities[moment(timeNowLocal).date(i).format("YYYY-MM-DD")]) {
+                                    html += '<td = class="ic__day-unavailable">' + i + '</td>';
+                                }
+                                else{
+                                    html += '<td class="ic__day">' + i + '</td>';
+                                }
                             }
 
                             // new week - new line
