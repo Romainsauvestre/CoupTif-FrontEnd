@@ -16,4 +16,8 @@ angular.module('starter.services', ['ngResource'])
   .factory('Calendar', function ($resource) {
     return $resource(host+'/hairdressers/:hairdresserId/calendars/:calendarId.json')
   })
+
+  .factory('Slot', function ($resource) {
+    return $resource(host+'/hairdressers/:hairdresserId/calendars/:calendarId/slots/:slotId.json')
+  })
 ;

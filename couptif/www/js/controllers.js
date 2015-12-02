@@ -72,12 +72,12 @@ angular.module('starter.controllers', ['starter.services'])
       },
       availabilities: days_availability
     });
-
-
   });
+})
 
-
-
+.controller('SlotCtrl', function($scope, $stateParams, Slot){
+  $scope.slots = Slot.query({hairdresserId: $stateParams.hairdresserId, calendarId: $stateParams.calendarId});
+  //$scope.service = TODO
 
 });
 
