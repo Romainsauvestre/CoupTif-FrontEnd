@@ -54,26 +54,30 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.service = Service.get({hairdresserId: $stateParams.hairdresserId, serviceId: $stateParams.serviceId});
 
   // Get list of calendars
-  var calendars = Calendar.query({hairdresserId: $stateParams.hairdresserId});
-
-  // Transform it into a list of availabilities
+  // And transform it into a list of availabilities
   var days_availability = {}; //= {"2015-12-03": true, "2015-12-04": false, "2015-12-05": true};
-  for (var k = 0; k++; k<calendars.length) {
-      days_availability[calendars[k].day] = (!calendars[k].available);
-  }
+  var calendars = Calendar.query({hairdresserId: $stateParams.hairdresserId}, function(){
+    for (var i=0; i<calendars.length; i++){
+      days_availability[calendars[i].day] = !calendars[i].available;
+    }
+    console.log(days_availability);
 
-  console.log(calendars);
+    $("#myCalendar-1").ionCalendar({
+      lang: "en",                     // language
+      sundayFirst: false,             // first week day
+      years: "2015-2016",                    // years diapason
+      format: "YYYY-MM-DD",           // date format
+      onClick: function(date){        // click on day returns date
+        console.log(date); //TODO: make a link
+      },
+      availabilities: days_availability
+    });
 
 
-  $("#myCalendar-1").ionCalendar({
-    lang: "en",                     // language
-    sundayFirst: false,             // first week day
-    years: "2015-2016",                    // years diapason
-    format: "YYYY-MM-DD",           // date format
-    onClick: function(date){        // click on day returns date
-      console.log(date); //TODO: make a link
-    },
-    availabilities: days_availability
   });
+
+
+
+
 });
 

@@ -94,7 +94,7 @@
                     }
                     else{
                         // Example settings.availabilities
-                        settings.availabilities = JSON.parse('{"2015-12-02":true, "2015-12-03":true}');
+                        //settings.availabilities = JSON.parse('{"2015-12-02":true, "2015-12-03":true}');
                     }
 
 
