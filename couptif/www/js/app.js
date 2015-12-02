@@ -67,6 +67,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           controller: 'HairdresserCtrl'
         }
       }
+    })
+
+    .state('app.service', {
+      url: "/hairdressers/:hairdresserId/services/:serviceId",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/service.html",
+          controller: 'ServiceCtrl'
+        }
+      }
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/hairdressers');

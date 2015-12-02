@@ -42,12 +42,24 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('HairdressersCtrl', function($scope, Hairdresser){
-    $scope.hairdressers = Hairdresser.query();
-  }
-)
+  $scope.hairdressers = Hairdresser.query();
+})
 
 .controller('HairdresserCtrl', function($scope, $stateParams, Hairdresser, Service) {
-    $scope.hairdresser = Hairdresser.get({hairdresserId: $stateParams.hairdresserId});
-    $scope.services = Service.query({hairdresserId: $stateParams.hairdresserId});
+  $scope.hairdresser = Hairdresser.get({hairdresserId: $stateParams.hairdresserId});
+  $scope.services = Service.query({hairdresserId: $stateParams.hairdresserId});
+})
+
+.controller('ServiceCtrl', function($scope, $stateParams, Service){
+  $scope.service = Service.get({hairdresserId: $stateParams.hairdresserId, serviceId: $stateParams.serviceId});
+  $("#myCalendar-1").ionCalendar({
+    lang: "en",                     // language
+    sundayFirst: false,             // first week day
+    years: "2015-2016",                    // years diapason
+    format: "DD.MM.YYYY",           // date format
+    onClick: function(date){        // click on day returns date
+      console.log(date); //TODO: make a link
+    }
+  });
 });
 
