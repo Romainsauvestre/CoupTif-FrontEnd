@@ -79,9 +79,15 @@ angular.module('starter.controllers', ['starter.services'])
   });
 })
 
-.controller('SlotCtrl', function($scope, $stateParams, Slot){
+.controller('SlotCtrl', function($scope, $stateParams, Slot, Hairdresser){
   $scope.slots = Slot.query({hairdresserId: $stateParams.hairdresserId, calendarId: $stateParams.calendarId});
+  $scope.hairdresser = Hairdresser.get({hairdresserId: $stateParams.hairdresserId});
   //$scope.service = TODO
 
-});
+})
+
+.controller('BookingsCtrl', function($scope, $stateParams, Hairdresser) {
+    $scope.hairdresser = Hairdresser.get({hairdresserId: $stateParams.hairdresserId});
+})
+;
 
