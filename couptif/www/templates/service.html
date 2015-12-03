@@ -3,23 +3,28 @@
 
     <div class="list card">
       <div class="item item-avatar">
-        <img src="{{service.photo}}">
+        <img ng-src="{{hairdresser.photo}}">
         <h2>{{service.name}}</h2>
         <p>{{service.price}}€</p>
       </div>
 
       <div class="item item-body">
+        <h2>Service Description :</h2>
         <p>
           {{service.description}}
         </p>
-
-        BOOK HERE
-
       </div>
-    </div>
 
+      <div class="item item-image">
+        <img src="{{service.photo}}">
+      </div>
+
+    </div>
+    <h1>BOOK HERE</h1>
     <div class="myCalendar" id="myCalendar-1"></div>
 
 
   </ion-content>
 </ion-view>
+
+

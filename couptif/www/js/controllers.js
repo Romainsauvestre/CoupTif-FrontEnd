@@ -50,7 +50,8 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.services = Service.query({hairdresserId: $stateParams.hairdresserId});
 })
 
-.controller('ServiceCtrl', function($scope, $stateParams, $state, Service, Calendar){
+.controller('ServiceCtrl', function($scope, $stateParams, $state, Service, Hairdresser, Calendar){
+  $scope.hairdresser = Hairdresser.get({hairdresserId: $stateParams.hairdresserId});
   $scope.service = Service.get({hairdresserId: $stateParams.hairdresserId, serviceId: $stateParams.serviceId});
 
   // Get list of calendars
