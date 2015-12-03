@@ -238,8 +238,8 @@
                                     html += '<td class="ic__day ic__day_state_current">' + i + '</td>';
                                 }
 
-                            } else if(timeSelected && moment(timeNowLocal).date(i).format("D.M.YYYY") === timeSelected.format("D.M.YYYY")) {
-                                html += '<td class="ic__day ic__day_state_selected">' + i + '</td>';
+                            //} else if(timeSelected && moment(timeNowLocal).date(i).format("D.M.YYYY") === timeSelected.format("D.M.YYYY")) {
+                            //    html += '<td class="ic__day ic__day_state_selected">' + i + '</td>';
                             } else {
                                 // TODO: add a way to make unavailable days with the class ic_day-unavailable
                                 if (settings.availabilities &&
